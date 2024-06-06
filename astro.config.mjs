@@ -7,6 +7,10 @@ import pagefind from "astro-pagefind";
 
 // https://astro.build/config
 export default defineConfig({
+  i18n: {
+    defaultLocale: "it",
+    locales: ["it", "en"],
+  },
   site: "https://astro-micro.vercel.app",
   integrations: [tailwind(), sitemap(), mdx(), pagefind()],
   markdown: {
