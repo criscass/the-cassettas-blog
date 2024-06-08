@@ -11,7 +11,7 @@ import { Image } from "astro:assets";
 import hero_img from "../../assets/images/hero.jpg";
 
 const blog = (await getCollection("blog"))
-	.filter((post) => !post.data.draft && post.data.language === "en")
+	.filter((post) => !post.data.draft && post.data.language === "it")
 	.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
 	.slice(0, SITE.NUM_POSTS_ON_HOMEPAGE);
 ---
@@ -24,13 +24,14 @@ const blog = (await getCollection("blog"))
 				<article class="space-y-4">
 					<span class="animate">
 						<p>
-							The term "rebooting" comes from the world of computing. The meaning varies depending on the context.
-							Metaphorically, "rebooting" can be used to indicate a new beginning or a renewal in various aspects of life, such
-							as changing careers, starting a project from scratch, or adopting new habits to improve one's well-being.
+							Il termine "rebooting" deriva dall'inglese e si traduce in italiano come "riavviare" o "riavvio". Il significato
+							varia a seconda del contesto. Metaforicamente, "rebooting" può essere usato per indicare un nuovo inizio o un
+							rinnovamento in vari aspetti della vita, come cambiare carriera, ripartire da zero in un progetto o adottare
+							nuove abitudini per migliorare il proprio benessere.
 						</p>
 						<p>
-							After 15 years of stable and happy life, spent in a paradise among the Tuscan hills, the Cassetta family
-							undergoes a drastic "reboot," moving to the Netherlands, changing careers, schools, language, and lifestyle.
+							Dopo 15 anni di vita stabile e felice, vissuta in un paradiso tra le colline toscane, la famiglia Cassetta opera
+							un drastico “reboot”, trasferendosi in Olanda, cambiando carriera, scuole, lingua e stile di vita.
 						</p>
 					</span>
 				</article>
@@ -45,7 +46,7 @@ const blog = (await getCollection("blog"))
 					{
 						blog.map((post) => (
 							<li>
-								<ArrowCard entry={post} lang="en" />
+								<ArrowCard entry={post} lang="it" />
 							</li>
 						))
 					}
@@ -53,10 +54,10 @@ const blog = (await getCollection("blog"))
 			</section>
 
 			<section class="animate space-y-4">
-				<h2 class="font-semibold text-black dark:text-white">Let's keep in touch</h2>
+				<h2 class="font-semibold text-black dark:text-white">Restiamo in contatto</h2>
 				<article>
 					<p>
-						If you want to receive an email every time we publish a new post, send me a request at <span>
+						Se vuoi ricevere una mail ogni volta che pubblichiamo un nuovo post spediscimi una richiesta a <span>
 							<Link href={`mailto:${SITE.EMAIL}`} aria-label={`Email ${SITE.TITLE}`}>
 								{SITE.EMAIL}
 							</Link></span

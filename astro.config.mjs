@@ -10,6 +10,9 @@ export default defineConfig({
   i18n: {
     defaultLocale: "it",
     locales: ["it", "en"],
+    routing: {
+      prefixDefaultLocale: true,
+    },
   },
   site: "https://astro-micro.vercel.app",
   integrations: [tailwind(), sitemap(), mdx(), pagefind()],
