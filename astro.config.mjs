@@ -14,7 +14,7 @@ export default defineConfig({
       prefixDefaultLocale: true,
     },
   },
-  site: "https://the-cassettas-blog.vercel.app",
+  site: "http://www.cassettas-reboot.xyz/",
   integrations: [tailwind(), sitemap(), mdx(), pagefind()],
   markdown: {
     shikiConfig: {
