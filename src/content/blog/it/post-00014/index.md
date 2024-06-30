@@ -28,6 +28,9 @@ Il modo migliore di trovare lavoro però e’ facendo networking e a questo fine
 I "meetup" sono degli eventi gratuiti, che possono essere organizzati da chiunque, e, nel settore della programmazione sono di solito organizzati da aziende o associazioni, per affrontare un tema specifico. Mi viene detto che sono ottimi posti dove intessere delle relazioni professionali.
 Sotto questo punto di vista, ovvero nell'iniziare e mantenere delle relazioni, professionali o anche d'amicizia, io sono un po' un cavernicolo, un lupo solitario. Ma ora mi tocca cambiare.
 
+![Persone nel semibuio dello show](../../../../assets/images/post-14/pic-5.jpg)
+_La prima parte dello show_
+
 ![Mostra all'interno della chiesa](../../../../assets/images/post-14/pic-3.jpg)
 _La mostra all'interno della chiesa_
 

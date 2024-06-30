@@ -27,6 +27,9 @@ The best way to find a job, however, is through networking, and for this purpose
 
 From this point of view, that is, in starting and maintaining relationships, whether professional or friendships, I am a bit of a caveman, a lone wolf. But now I have to change.
 
+![People inside the show room ](../../../../assets/images/post-14/pic-5.jpg)
+_First pirt of the show_
+
 ![The exposition inside the church](../../../../assets/images/post-14/pic-3.jpg)
 _The exposition inside the church_
 
