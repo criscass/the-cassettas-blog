@@ -1,5 +1,5 @@
 ---
-title: "A Weekend on Edge"
+title: "A Weekend on Pins and Needles"
 description: "A Comparison with Our Situation 15 Years Ago"
 date: "2024-07-28"
 draft: false
