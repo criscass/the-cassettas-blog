@@ -1,7 +1,7 @@
 backend:
   name: github
   repo: criscass/the-cassettas-blog
-  branch: decap/CMS
+  branch: main
   site_domain: www.cassettas-reboot.xyz
 
 # For local development
