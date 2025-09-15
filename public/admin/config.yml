@@ -2,7 +2,7 @@ backend:
   name: github
   repo: criscass/the-cassettas-blog
   base_url: https://netlify-cms-oauth-provider.vercel.app
-  auth_endpoint: /auth
+  auth_endpoint: auth
 
 # For local development
 # local_backend: true
