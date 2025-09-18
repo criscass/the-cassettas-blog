@@ -6,7 +6,8 @@ date: 2025-09-18
 draft: false
 language: it
 ---
-![Cristian che cucina al BBQ](../../../../assets/images/post-00042/pic-1.jpg "L' AI mi fa sembrare giovane, alto e bello.")
+
+![Cristian che cucina al BBQ](../../../../assets/images/post-00042/pic-a1.jpg "L' AI mi fa sembrare giovane, alto e bello.")
 
 Carissimi amici e amiche, nonostante i miei post abbiano ormai cadenza trimestrale qui, in casa Cassetta, sono successe un miliardo di cose.
 
@@ -34,7 +35,7 @@ Comunque la vedo molto felice e positiva. Hilly, non la signora anziana.
 Nel mese di Agosto le ragazze sono andate in Sardegna per 3 settimane.\
 Io e Hilly siamo rimasti a casa tutto il tempo se non per una breve fuga di 4 giorni, in cui abbiamo caricato sulle bici la tenda, i sacchi a pelo e i materassini, e siamo partiti per fare  un giro della zona.
 
-![Bici cariche di bagagli e noi pronti alla partenza](../../../../assets/images/post-00042/pic-3.jpg "Pronti per il nostro giretto.")
+![Bici cariche di bagagli e noi pronti alla partenza](../../../../assets/images/post-00042/pic-a3.jpg "Pronti per il nostro giretto.")
 
 La pedalata, di circa 350 km, mi e’ servita come meditazione sul prossimo futuro e, proprio in quella settimana ho maturato la decisione che era giunto il momento di trovare un lavoro un po’ piu’ appagante, soprattutto dal punto di vista dello stipendio ma anche da quello delle prospettive future.
 
@@ -61,7 +62,7 @@ Ad ogni modo al negozio di bici ho già dato le dimissioni. Per Koen, il proprie
 Mi sono trovato molto bene a lavorare nel suo negozio, con tutto il team, soprattutto con Joost, con cui certamente continuero’ a frequentarmi.
 
 Lavorare con le bici e’ stato fantastico e non mi sono mai annoiato un momento. Ho imparato un sacco di cose. Anche le lunghe giornate del turno da 12 ore volavano allegramente.\
-Mi mancherà anche la settimana di 4 giorni lavorativi. Al ristorante lavorerò 38 ore alla settimana, ma distribuite su 5 giorni. 
+Mi mancherà anche la settimana di 4 giorni lavorativi. Al ristorante lavorerò 38 ore alla settimana, ma distribuite su 5 giorni.
 
 Ci sono un sacco di cose di cui non riesco a parlare in questo post ma rimediero’ presto.
 
@@ -69,12 +70,12 @@ Credo che ora riuscirò a scrivere un po’ di più visto che ho da poco semplif
 
 Quindi, amici e amiche, a presto!
 
-![amici fanno un picnic al parco](../../../../assets/images/post-00042/pic-4.jpg "Con I nostri cari amici di Roma in un parco della zona.")
+![amici fanno un picnic al parco](../../../../assets/images/post-00042/pic-a4.jpg "Con I nostri cari amici di Roma in un parco della zona.")
 
-![Persone in barca nel canale](../../../../assets/images/post-00042/pic-5.jpg "Ci sono anche venuti a trovare i nostri amici dall'oklahoma e abbiamo fatto un giro in barca per i canali di Leiden.")
+![Persone in barca nel canale](../../../../assets/images/post-00042/pic-a5.jpg "Ci sono anche venuti a trovare i nostri amici dall'oklahoma e abbiamo fatto un giro in barca per i canali di Leiden.")
 
-![Un gruppo di amici al compleanno di Gemma](../../../../assets/images/post-00042/pic-7.jpg "Gemma compie 15 anni.")
+![Un gruppo di amici al compleanno di Gemma](../../../../assets/images/post-00042/pic-a7.jpg "Gemma compie 15 anni.")
 
-![quattro di noi davanti al mulino](../../../../assets/images/post-00042/pic-6.jpg "Con mia cugina Barbara e Dave a fine Agosto.")
+![quattro di noi davanti al mulino](../../../../assets/images/post-00042/pic-a6.jpg "Con mia cugina Barbara e Dave a fine Agosto.")
 
-![Alunni il giorno del diploma](../../../../assets/images/post-00042/pic-8.jpg "Il giorno del diploma di Sophia dalla classe internazionale. Anche Gemma ha fatto la stessa cerimonia ma non ho foto.")
+![Alunni il giorno del diploma](../../../../assets/images/post-00042/pic-a8.jpg "Il giorno del diploma di Sophia dalla classe internazionale. Anche Gemma ha fatto la stessa cerimonia ma non ho foto.")
