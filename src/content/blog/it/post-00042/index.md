@@ -34,6 +34,8 @@ Comunque la vedo molto felice e positiva. Hilly, non la signora anziana.
 Nel mese di Agosto le ragazze sono andate in Sardegna per 3 settimane.\
 Io e Hilly siamo rimasti a casa tutto il tempo se non per una breve fuga di 4 giorni, in cui abbiamo caricato sulle bici la tenda, i sacchi a pelo e i materassini, e siamo partiti per fare  un giro della zona.
 
+![Bici cariche di bagagli e noi pronti alla partenza](../../../../assets/images/post-00042/pic-3.jpg "Pronti per il nostro giretto.")
+
 La pedalata, di circa 350 km, mi e’ servita come meditazione sul prossimo futuro e, proprio in quella settimana ho maturato la decisione che era giunto il momento di trovare un lavoro un po’ piu’ appagante, soprattutto dal punto di vista dello stipendio ma anche da quello delle prospettive future.
 
 Mi sono dato un occhiata intorno e ho deciso di trovare lavoro come chef in qualche ristorante non troppo lontano.\
@@ -66,3 +68,13 @@ Ci sono un sacco di cose di cui non riesco a parlare in questo post ma rimediero
 Credo che ora riuscirò a scrivere un po’ di più visto che ho da poco semplificato il modo in cui gestisco il blog. Ho implementato un interfaccia di amministrazione in cui posso scrivere il post e fare l'upload delle foto senza dover smanettare con il codice ogni volta e dover impiegare due ore solo per mettere il nuovo post online. Roba che si fa dagli anni 90 ma io ci sono arrivato solo ora!
 
 Quindi, amici e amiche, a presto!
+
+![amici fanno un picnic al parco](../../../../assets/images/post-00042/pic-4.jpg "Con I nostri cari amici di Roma in un parco della zona.")
+
+![Persone in barca nel canale](../../../../assets/images/post-00042/pic-5.jpg "Ci sono anche venuti a trovare i nostri amici dall'oklahoma e abbiamo fatto un giro in barca per i canali di Leiden.")
+
+![Un gruppo di amici al compleanno di Gemma](../../../../assets/images/post-00042/pic-7.jpg "Gemma compie 15 anni.")
+
+![quattro di noi davanti al mulino](../../../../assets/images/post-00042/pic-6.jpg "Con mia cugina Barbara e Dave a fine Agosto.")
+
+![Alunni il giorno del diploma](../../../../assets/images/post-00042/pic-8.jpg "Il giorno del diploma di Sophia dalla classe internazionale. Anche Gemma ha fatto la stessa cerimonia ma non ho foto.")
