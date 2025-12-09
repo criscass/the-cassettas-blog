@@ -17,14 +17,27 @@ const { title, description, image = "/blog-placeholder-1.jpg" } = Astro.props;
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<link rel="icon" href="/favicon.ico" />
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
 <link rel="manifest" href="/site.webmanifest" />
 <meta name="generator" content={Astro.generator} />
 
 <!-- Font preloads -->
-<link rel="preload" href="/fonts/geist.woff2" as="font" type="font/woff2" crossorigin />
-<link rel="preload" href="/fonts/geist-mono.woff2" as="font" type="font/woff2" crossorigin />
+<link
+	rel="preload"
+	href="/fonts/geist.woff2"
+	as="font"
+	type="font/woff2"
+	crossorigin
+/>
+<link
+	rel="preload"
+	href="/fonts/geist-mono.woff2"
+	as="font"
+	type="font/woff2"
+	crossorigin
+/>
 
 <!-- Canonical URL -->
 <link rel="canonical" href={canonicalURL} />
@@ -86,18 +99,24 @@ const { title, description, image = "/blog-placeholder-1.jpg" } = Astro.props;
 			updateThemeButtons();
 		});
 
-		const systemThemeButton = document.getElementById("system-theme-button");
+		const systemThemeButton = document.getElementById(
+			"system-theme-button",
+		);
 		systemThemeButton?.addEventListener("click", () => {
 			localStorage.setItem("theme", "system");
-			toggleTheme(window.matchMedia("(prefers-color-scheme: dark)").matches);
+			toggleTheme(
+				window.matchMedia("(prefers-color-scheme: dark)").matches,
+			);
 			updateThemeButtons();
 		});
 
-		window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", (event) => {
-			if (localStorage.theme === "system") {
-				toggleTheme(event.matches);
-			}
-		});
+		window
+			.matchMedia("(prefers-color-scheme: dark)")
+			.addEventListener("change", (event) => {
+				if (localStorage.theme === "system") {
+					toggleTheme(event.matches);
+				}
+			});
 
 		document.addEventListener("scroll", onScroll);
 	}
@@ -106,7 +125,9 @@ const { title, description, image = "/blog-placeholder-1.jpg" } = Astro.props;
 		const theme = localStorage.getItem("theme");
 		const lightThemeButton = document.getElementById("light-theme-button");
 		const darkThemeButton = document.getElementById("dark-theme-button");
-		const systemThemeButton = document.getElementById("system-theme-button");
+		const systemThemeButton = document.getElementById(
+			"system-theme-button",
+		);
 
 		function removeActiveButtonTheme(button) {
 			button?.classList.remove("bg-black/5");
@@ -169,8 +190,8 @@ const { title, description, image = "/blog-placeholder-1.jpg" } = Astro.props;
              -ms-transition: none !important;
              transition: none !important;
           }
-        `
-			)
+        `,
+			),
 		);
 
 		document.head.appendChild(css);
@@ -193,7 +214,9 @@ const { title, description, image = "/blog-placeholder-1.jpg" } = Astro.props;
 		if (userTheme === "light" || userTheme === "dark") {
 			toggleTheme(userTheme === "dark");
 		} else {
-			toggleTheme(window.matchMedia("(prefers-color-scheme: dark)").matches);
+			toggleTheme(
+				window.matchMedia("(prefers-color-scheme: dark)").matches,
+			);
 		}
 	}
 
