@@ -7,7 +7,15 @@ import { getRelativeLocaleUrl, getRelativeLocaleUrlList } from "astro:i18n";
 
 const englishURL = getRelativeLocaleUrl("en", "");
 const italianURL = getRelativeLocaleUrl("it", "");
-let currentLocale = Astro.currentLocale;
+const currentLocale = Astro.currentLocale ?? "it";
+const otherLocale = currentLocale === "it" ? "en" : "it";
+const { pathname } = Astro.url;
+
+// Split the pathname into segments and replace currentLocale segments with otherLocale
+const newPath = pathname
+	.split("/")
+	.map((segment) => (segment === currentLocale ? otherLocale : segment))
+	.join("/") || `/${otherLocale}`;
 ---
 
 <header>
@@ -21,17 +29,9 @@ let currentLocale = Astro.currentLocale;
 			<nav class="flex items-center gap-5 text-sm">
 				<Link href={`/${currentLocale}/blog`}>blog</Link>
 
-				{
-					currentLocale === "it" ? (
-						<Link href="/en" underline={false}>
-							English
-						</Link>
-					) : (
-						<Link href="/it" underline={false}>
-							Italiano
-						</Link>
-					)
-				}
+				<Link href={newPath} underline={false}>
+					{currentLocale === "it" ? "English" : "Italiano"}
+				</Link>
 
 				<button
 					id="magnifying-glass"

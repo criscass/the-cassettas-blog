@@ -1,9 +1,11 @@
 # The Cassetta's Blog - GEMINI.md
 
 ## Project Overview
+
 This is a personal blog built using **Astro 5** and **Tailwind CSS**. It features multi-language support (Italian and English) and uses **MDX** for content management. Search functionality is powered by **Pagefind**.
 
 ### Key Technologies
+
 - **Framework:** [Astro](https://astro.build/)
 - **Styling:** [Tailwind CSS](https://tailwindcss.com/)
 - **Content:** [Astro Collections](https://docs.astro.build/en/guides/content-collections/) with MDX
@@ -11,6 +13,7 @@ This is a personal blog built using **Astro 5** and **Tailwind CSS**. It feature
 - **i18n:** Built-in Astro i18n support
 
 ## Directory Structure
+
 - `src/content/blog/`: Contains the blog posts organized by language (`en/`, `it/`).
 - `src/assets/images/`: Stores images for blog posts, organized by post ID (e.g., `post-49/`).
 - `src/components/`: Reusable Astro components.
@@ -19,6 +22,7 @@ This is a personal blog built using **Astro 5** and **Tailwind CSS**. It feature
 - `src/lib/`: Utility functions and custom Remark/Rehype plugins.
 
 ## Building and Running
+
 - **Development:** `npm run dev` or `npm run start`
 - **Build:** `npm run build` (Runs Astro check and build)
 - **Preview:** `npm run preview`
@@ -27,6 +31,7 @@ This is a personal blog built using **Astro 5** and **Tailwind CSS**. It feature
 ## Development Conventions
 
 ### Blog Post Structure
+
 - **Location:** `src/content/blog/[lang]/post-XXXXX/index.md`
 - **Images:** `src/assets/images/post-X/`
 - **MDX Frontmatter:**
@@ -41,13 +46,19 @@ This is a personal blog built using **Astro 5** and **Tailwind CSS**. It feature
   ```
 - **Image Referencing:**
   Use relative paths: `![Alt text](../../../../assets/images/post-X/pic-Y.jpg "Caption text")`
-  *Note: A custom Remark plugin (`src/lib/remark-image-captions.js`) converts the image title into an italicized caption below the image.*
+  _Note: A custom Remark plugin (`src/lib/remark-image-captions.js`) converts the image title into an italicized caption below the image._
 
 ### Routing
+
 - Default locale: `it`
 - Localized paths: `/it/...` and `/en/...`
 - Slugs are formatted using `formatSlug` from `@lib/utils`.
 
 ### Styles
+
 - Global styles are in `src/styles/global.css`.
 - Tailwind CSS is used for component-level styling.
+
+### Additional coding preferences
+
+- Keep project dependencies minimal
