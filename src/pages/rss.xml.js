@@ -1,16 +1,12 @@
 import rss from "@astrojs/rss";
 import { SITE } from "@consts";
 import { getCollection } from "astro:content";
-import { formatSlug } from "@lib/utils";
+import { cleanSlug } from "@lib/utils";
 
 export async function GET(context) {
   const blog = (await getCollection("blog")).filter((post) => !post.data.draft);
 
-  const projects = (await getCollection("projects")).filter(
-    (project) => !project.data.draft,
-  );
-
-  const items = [...blog, ...projects].sort(
+  const items = [...blog].sort(
     (a, b) => new Date(b.data.date).valueOf() - new Date(a.data.date).valueOf(),
   );
 
@@ -22,7 +18,7 @@ export async function GET(context) {
       title: item.data.title,
       description: item.data.description,
       pubDate: item.data.date,
-      link: `/${item.collection}/${formatSlug(item.id)}/`,
+      link: `/${item.data.language}/${cleanSlug(item.id)}/`,
     })),
   });
 }

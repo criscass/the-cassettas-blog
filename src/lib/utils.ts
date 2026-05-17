@@ -25,3 +25,7 @@ export function formatSlug(id: string) {
   return id.replace(/\/index\.md$/, '').replace(/\.md$/, '').replace(/\/index\.mdx$/, '').replace(/\.mdx$/, '');
 }
 
+export function cleanSlug(id: string) {
+  const slug = formatSlug(id);
+  return slug.replace(/^(it|en)\//, '');
+}

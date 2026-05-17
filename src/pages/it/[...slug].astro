@@ -3,7 +3,7 @@ import { type CollectionEntry, getCollection, render } from "astro:content";
 import Layout from "@layouts/Layout.astro";
 import Container from "@components/Container.astro";
 import FormattedDate from "@components/FormattedDate.astro";
-import { readingTime, formatSlug } from "@lib/utils";
+import { readingTime, cleanSlug } from "@lib/utils";
 import BackToPrevious from "@components/BackToPrevious.astro";
 import PostNavigation from "@components/PostNavigation.astro";
 
@@ -12,7 +12,7 @@ export async function getStaticPaths() {
 		.filter((post) => !post.data.draft && post.data.language === "it")
 		.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 	return posts.map((post) => ({
-		params: { slug: formatSlug(post.id) },
+		params: { slug: cleanSlug(post.id) },
 		props: post,
 	}));
 }
@@ -25,7 +25,7 @@ const posts = (await getCollection("blog")).filter(
 function getNextPost() {
 	let postIndex;
 	for (const post of posts) {
-		if (formatSlug(post.id) === Astro.params.slug) {
+		if (cleanSlug(post.id) === Astro.params.slug) {
 			postIndex = posts.indexOf(post);
 			return posts[postIndex + 1];
 		}
@@ -35,7 +35,7 @@ function getNextPost() {
 function getPrevPost() {
 	let postIndex;
 	for (const post of posts) {
-		if (formatSlug(post.id) === Astro.params.slug) {
+		if (cleanSlug(post.id) === Astro.params.slug) {
 			postIndex = posts.indexOf(post);
 			return posts[postIndex - 1];
 		}

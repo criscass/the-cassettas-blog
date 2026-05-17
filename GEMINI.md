@@ -52,7 +52,7 @@ This is a personal blog built using **Astro 5** and **Tailwind CSS**. It feature
 
 - Default locale: `it`
 - Localized paths: `/it/...` and `/en/...`
-- Slugs are formatted using `formatSlug` from `@lib/utils`.
+- Slugs are formatted using `cleanSlug` from `@lib/utils` to remove language prefixes (e.g., `it/post-1` becomes `post-1`).
 
 ### Styles
 
