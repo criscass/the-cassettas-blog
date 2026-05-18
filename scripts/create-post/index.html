@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>New Post — The Cassettas</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #f5f4f0;
+      color: #1a1a1a;
+      min-height: 100vh;
+    }
+
+    header {
+      background: #1a1a1a;
+      color: #fff;
+      padding: 16px 32px;
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: -0.3px;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 1fr 280px;
+      gap: 24px;
+      max-width: 1100px;
+      margin: 32px auto;
+      padding: 0 24px;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 10px;
+      padding: 28px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+    }
+
+    label {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      color: #666;
+      margin-bottom: 6px;
+    }
+
+    input[type="text"], input[type="date"], input[type="number"], textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1.5px solid #e0e0e0;
+      border-radius: 7px;
+      font-size: 15px;
+      font-family: inherit;
+      color: #1a1a1a;
+      background: #fafafa;
+      transition: border-color 0.15s;
+    }
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: #1a1a1a;
+      background: #fff;
+    }
+
+    .field { margin-bottom: 20px; }
+
+    .row { display: grid; grid-template-columns: 1fr 1fr 120px; gap: 16px; }
+
+    textarea#body, textarea#bodyEN {
+      height: 160px;
+      resize: vertical;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    /* Image tray */
+    .sidebar { display: flex; flex-direction: column; gap: 16px; }
+
+    .drop-zone {
+      border: 2px dashed #ccc;
+      border-radius: 8px;
+      padding: 20px;
+      text-align: center;
+      cursor: pointer;
+      transition: border-color 0.15s, background 0.15s;
+      font-size: 14px;
+      color: #888;
+    }
+    .drop-zone.over { border-color: #1a1a1a; background: #f0f0ec; }
+    .drop-zone input { display: none; }
+
+    #image-tray { display: flex; flex-direction: column; gap: 8px; }
+
+    .img-chip {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: #f5f4f0;
+      border: 1.5px solid #e0e0e0;
+      border-radius: 8px;
+      padding: 8px 10px;
+      cursor: grab;
+      font-size: 13px;
+    }
+    .img-chip img { width: 44px; height: 44px; object-fit: cover; border-radius: 5px; flex-shrink: 0; }
+    .img-chip .name { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: #555; }
+    .img-chip .remove { cursor: pointer; color: #aaa; font-size: 16px; line-height: 1; flex-shrink: 0; }
+    .img-chip .remove:hover { color: #e00; }
+
+    /* Composer */
+    #composer { display: flex; flex-direction: column; gap: 0; }
+
+    .composer-block { position: relative; }
+
+    .drop-row {
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px dashed transparent;
+      border-radius: 6px;
+      transition: border-color 0.15s, background 0.15s;
+      font-size: 12px;
+      color: transparent;
+      cursor: default;
+    }
+    .drop-row.drag-over {
+      border-color: #1a1a1a;
+      background: #f0f0ec;
+      color: #888;
+    }
+
+    .text-block {
+      background: #fafafa;
+      border: 1.5px solid #e8e8e4;
+      border-radius: 7px;
+      padding: 10px 12px;
+      font-size: 14px;
+      line-height: 1.6;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    .image-block {
+      display: grid;
+      grid-template-columns: 64px 1fr auto;
+      gap: 12px;
+      align-items: start;
+      background: #f0f0ec;
+      border: 1.5px solid #d8d8d4;
+      border-radius: 7px;
+      padding: 10px 12px;
+    }
+    .image-block > img { width: 64px; height: 64px; object-fit: cover; border-radius: 5px; }
+    .image-block .img-fields { display: flex; flex-direction: column; gap: 6px; padding-top: 2px; }
+    .image-block .img-filename { font-size: 12px; color: #888; margin-bottom: 2px; }
+    .image-block .img-alt,
+    .image-block .img-caption {
+      font-size: 13px;
+      padding: 6px 9px;
+      border-radius: 5px;
+      border: 1.5px solid #d0d0cc;
+      background: #fff;
+      width: 100%;
+    }
+    .image-block .img-alt:focus,
+    .image-block .img-caption:focus { outline: none; border-color: #1a1a1a; }
+    .image-block .rm-img { cursor: pointer; color: #aaa; font-size: 18px; line-height: 1; padding-top: 4px; }
+    .image-block .rm-img:hover { color: #e00; }
+
+    .composer-hint {
+      font-size: 13px;
+      color: #aaa;
+      text-align: center;
+      padding: 24px;
+      border: 2px dashed #e0e0e0;
+      border-radius: 8px;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: opacity 0.15s;
+    }
+    .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+    .btn-primary { background: #1a1a1a; color: #fff; width: 100%; }
+    .btn-primary:hover:not(:disabled) { background: #333; }
+
+    /* Status */
+    #status {
+      margin-top: 16px;
+      padding: 14px 16px;
+      border-radius: 8px;
+      font-size: 14px;
+      display: none;
+    }
+    #status.error { background: #fff0f0; border: 1px solid #fcc; color: #c00; display: block; }
+    #status.success { background: #f0fff4; border: 1px solid #9de; color: #050; display: block; }
+    #status.loading { background: #f5f4f0; border: 1px solid #e0e0e0; color: #555; display: block; }
+
+    .section-title {
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #999;
+      margin-bottom: 12px;
+    }
+
+    .refresh-btn {
+      background: none;
+      border: none;
+      color: #888;
+      cursor: pointer;
+      font-size: 12px;
+      padding: 2px 6px;
+    }
+    .refresh-btn:hover { color: #333; }
+  </style>
+</head>
+<body>
+  <header>The Cassettas — New Post</header>
+
+  <div class="layout">
+    <!-- Left: main form -->
+    <div>
+      <div class="card" style="margin-bottom: 16px;">
+        <div class="section-title">Post Details</div>
+        <div class="row">
+          <div class="field">
+            <label>Post Number <button class="refresh-btn" id="refresh-num" title="Auto-detect next">↻ auto</button></label>
+            <input type="number" id="postNumber" min="1" placeholder="52" />
+          </div>
+          <div class="field">
+            <label>Date</label>
+            <input type="date" id="date" />
+          </div>
+          <div></div>
+        </div>
+        <div class="field">
+          <label>Title (Italian)</label>
+          <input type="text" id="titleIT" placeholder="Intervista a Sophia" />
+        </div>
+        <div class="field">
+          <label>Description (Italian)</label>
+          <input type="text" id="descriptionIT" placeholder="Una breve descrizione del post" />
+        </div>
+        <div class="field">
+          <label>Title (English)</label>
+          <input type="text" id="titleEN" placeholder="Interview with Sophia" />
+        </div>
+        <div class="field" style="margin-bottom:0;">
+          <label>Description (English)</label>
+          <input type="text" id="descriptionEN" placeholder="A brief description of the post" />
+        </div>
+      </div>
+
+      <div class="card" style="margin-bottom: 16px;">
+        <div class="section-title">Italian Text</div>
+        <div class="field">
+          <label>Paste from Google Docs</label>
+          <textarea id="body" placeholder="Paste the Italian post body here. When you're done, click 'Build Composer' to arrange images between paragraphs."></textarea>
+        </div>
+        <button class="btn btn-primary" id="build-btn" type="button">Build Composer →</button>
+      </div>
+
+      <div class="card" id="composer-card" style="display:none; margin-bottom: 16px;">
+        <div class="section-title">Arrange Images</div>
+        <p style="font-size:13px; color:#888; margin-bottom:14px;">Drag images from the tray and drop them between paragraphs. Fill in alt text and caption for each image.</p>
+        <div id="composer"></div>
+      </div>
+
+      <div class="card" style="margin-bottom: 16px;">
+        <div class="section-title">English Text</div>
+        <div class="field" style="margin-bottom:0;">
+          <label>Paste translated body</label>
+          <textarea id="bodyEN" placeholder="Paste the English translation here. Images will be inserted at the same paragraph positions as in the Italian text."></textarea>
+        </div>
+      </div>
+
+      <div class="card">
+        <button class="btn btn-primary" id="submit-btn" type="button">Create Post</button>
+        <div id="status"></div>
+      </div>
+    </div>
+
+    <!-- Right: image tray -->
+    <div class="sidebar">
+      <div class="card">
+        <div class="section-title">Images</div>
+        <div class="drop-zone" id="drop-zone">
+          <input type="file" id="file-input" multiple accept="image/*" />
+          <div>Drop images here<br />or click to browse</div>
+        </div>
+        <div id="image-tray" style="margin-top: 10px;"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ── State ──────────────────────────────────────────────────────────────
+    // images: [{safeName, originalName, dataUrl}]
+    let images = [];
+    let composerBuilt = false;
+
+    // ── Init ───────────────────────────────────────────────────────────────
+    const today = new Date().toISOString().slice(0, 10);
+    document.getElementById("date").value = today;
+    fetchNextNumber();
+
+    async function fetchNextNumber() {
+      try {
+        const r = await fetch("/next-post-number");
+        const { next } = await r.json();
+        document.getElementById("postNumber").value = next;
+      } catch {}
+    }
+    document.getElementById("refresh-num").addEventListener("click", fetchNextNumber);
+
+    // ── Image upload ───────────────────────────────────────────────────────
+    const dropZone = document.getElementById("drop-zone");
+    const fileInput = document.getElementById("file-input");
+    const tray = document.getElementById("image-tray");
+
+    dropZone.addEventListener("click", () => fileInput.click());
+    dropZone.addEventListener("dragover", (e) => { e.preventDefault(); dropZone.classList.add("over"); });
+    dropZone.addEventListener("dragleave", () => dropZone.classList.remove("over"));
+    dropZone.addEventListener("drop", (e) => { e.preventDefault(); dropZone.classList.remove("over"); handleFiles(e.dataTransfer.files); });
+    fileInput.addEventListener("change", () => handleFiles(fileInput.files));
+
+    async function handleFiles(files) {
+      for (const file of files) {
+        if (!file.type.startsWith("image/")) continue;
+        const fd = new FormData();
+        fd.append("images", file);
+        const r = await fetch("/upload", { method: "POST", body: fd });
+        const { images: uploaded } = await r.json();
+        for (const img of uploaded) {
+          if (images.find(i => i.safeName === img.safeName)) continue;
+          images.push({ safeName: img.safeName, originalName: img.originalName, dataUrl: "data:image/jpeg;base64," + img.data });
+          renderTray();
+          if (composerBuilt) rebuildComposer();
+        }
+      }
+    }
+
+    function renderTray() {
+      tray.innerHTML = "";
+      for (const img of images) {
+        const chip = document.createElement("div");
+        chip.className = "img-chip";
+        chip.draggable = true;
+        chip.dataset.safeName = img.safeName;
+        chip.innerHTML = `
+          <img src="${img.dataUrl}" />
+          <div class="name">${img.originalName}</div>
+          <span class="remove" title="Remove">×</span>
+        `;
+        chip.querySelector(".remove").addEventListener("click", () => {
+          images = images.filter(i => i.safeName !== img.safeName);
+          renderTray();
+          if (composerBuilt) rebuildComposer();
+        });
+        chip.addEventListener("dragstart", (e) => {
+          e.dataTransfer.setData("safeName", img.safeName);
+          e.dataTransfer.effectAllowed = "copy";
+        });
+        tray.appendChild(chip);
+      }
+    }
+
+    // ── Image block factory ────────────────────────────────────────────────
+    // Creates a .composer-block div for an image, with alt + caption inputs.
+    // onRemove: callback when × is clicked.
+    function createImageBlock(safeName, { alt = "", caption = "", onRemove } = {}) {
+      const img = images.find(i => i.safeName === safeName);
+      const block = document.createElement("div");
+      block.className = "composer-block";
+      block.dataset.type = "image";
+      block.dataset.safeName = safeName;
+
+      const inner = document.createElement("div");
+      inner.className = "image-block";
+      inner.innerHTML = `
+        <img src="${img ? img.dataUrl : ''}" />
+        <div class="img-fields">
+          <div class="img-filename">${img ? img.originalName : safeName}</div>
+          <input type="text" class="img-alt" placeholder="Alt text (describes the image)" value="${escAttr(alt)}" />
+          <input type="text" class="img-caption" placeholder="Caption (optional, italic below image)" value="${escAttr(caption)}" />
+        </div>
+        <span class="rm-img" title="Remove from here">×</span>
+      `;
+
+      inner.querySelector(".rm-img").addEventListener("click", () => {
+        if (onRemove) onRemove(block);
+      });
+
+      block.appendChild(inner);
+      return block;
+    }
+
+    function escAttr(str) {
+      return str.replace(/"/g, "&quot;");
+    }
+
+    function readImageBlock(block) {
+      return {
+        safeName: block.dataset.safeName,
+        alt: block.querySelector(".img-alt").value.trim(),
+        caption: block.querySelector(".img-caption").value.trim(),
+      };
+    }
+
+    // ── Composer ───────────────────────────────────────────────────────────
+    document.getElementById("build-btn").addEventListener("click", buildComposer);
+
+    function buildComposer() {
+      const bodyText = document.getElementById("body").value.trim();
+      if (!bodyText) return;
+      const paras = bodyText.split(/\n{2,}/).filter(p => p.trim());
+      composerBuilt = true;
+      document.getElementById("composer-card").style.display = "block";
+      renderComposer(paras.map(p => ({ type: "text", content: p })));
+    }
+
+    function rebuildComposer() {
+      // Preserve existing image blocks (with their alt/caption values), drop removed images
+      const composer = document.getElementById("composer");
+      const parts = [];
+      for (const b of composer.querySelectorAll(".composer-block")) {
+        if (b.dataset.type === "text") {
+          parts.push({ type: "text", content: b.dataset.content });
+        } else if (b.dataset.type === "image") {
+          const sn = b.dataset.safeName;
+          if (images.find(i => i.safeName === sn)) {
+            const { alt, caption } = readImageBlock(b);
+            parts.push({ type: "image", safeName: sn, alt, caption });
+          }
+        }
+      }
+      renderComposer(parts);
+    }
+
+    function rebuildFromDOM() {
+      const composer = document.getElementById("composer");
+      const parts = [];
+      for (const child of composer.querySelectorAll(".composer-block")) {
+        if (child.dataset.type === "text") {
+          parts.push({ type: "text", content: child.dataset.content });
+        } else if (child.dataset.type === "image") {
+          const { alt, caption } = readImageBlock(child);
+          parts.push({ type: "image", safeName: child.dataset.safeName, alt, caption });
+        }
+      }
+      renderComposer(parts);
+    }
+
+    function renderComposer(parts) {
+      const composer = document.getElementById("composer");
+      composer.innerHTML = "";
+
+      if (parts.length === 0) {
+        composer.innerHTML = '<div class="composer-hint">No content yet. Paste text and click "Build Composer".</div>';
+        return;
+      }
+
+      appendDropRow(composer);
+
+      for (const part of parts) {
+        if (part.type === "text") {
+          const block = document.createElement("div");
+          block.className = "composer-block";
+          block.dataset.type = "text";
+          block.dataset.content = part.content;
+          const inner = document.createElement("div");
+          inner.className = "text-block";
+          inner.textContent = part.content;
+          block.appendChild(inner);
+          composer.appendChild(block);
+        } else {
+          const block = createImageBlock(part.safeName, {
+            alt: part.alt || "",
+            caption: part.caption || "",
+            onRemove: (b) => { b.remove(); rebuildFromDOM(); },
+          });
+          composer.appendChild(block);
+        }
+        appendDropRow(composer);
+      }
+    }
+
+    function appendDropRow(composer) {
+      const row = document.createElement("div");
+      row.className = "drop-row";
+      row.textContent = "Drop image here";
+      wireDropRow(row);
+      composer.appendChild(row);
+    }
+
+    function wireDropRow(row) {
+      row.addEventListener("dragover", (e) => { e.preventDefault(); row.classList.add("drag-over"); });
+      row.addEventListener("dragleave", () => row.classList.remove("drag-over"));
+      row.addEventListener("drop", (e) => {
+        e.preventDefault();
+        row.classList.remove("drag-over");
+        const safeName = e.dataTransfer.getData("safeName");
+        if (!safeName) return;
+
+        // Remove existing placement if any (preserving its alt/caption)
+        let savedAlt = "", savedCaption = "";
+        const existing = document.querySelector(`.composer-block[data-safe-name="${safeName}"]`);
+        if (existing) {
+          ({ alt: savedAlt, caption: savedCaption } = readImageBlock(existing));
+          existing.remove();
+          cleanupDoubleDropRows();
+        }
+
+        const block = createImageBlock(safeName, {
+          alt: savedAlt,
+          caption: savedCaption,
+          onRemove: (b) => { b.remove(); cleanupDoubleDropRows(); },
+        });
+
+        const newRow = document.createElement("div");
+        newRow.className = "drop-row";
+        newRow.textContent = "Drop image here";
+        wireDropRow(newRow);
+
+        row.insertAdjacentElement("afterend", block);
+        block.insertAdjacentElement("afterend", newRow);
+        cleanupDoubleDropRows();
+      });
+    }
+
+    function cleanupDoubleDropRows() {
+      const composer = document.getElementById("composer");
+      let prev = null;
+      for (const child of [...composer.children]) {
+        if (child.classList.contains("drop-row") && prev && prev.classList.contains("drop-row")) {
+          child.remove();
+          continue;
+        }
+        prev = child;
+      }
+    }
+
+    // ── Submit ─────────────────────────────────────────────────────────────
+    document.getElementById("submit-btn").addEventListener("click", async () => {
+      const postNumber = document.getElementById("postNumber").value;
+      const titleIT = document.getElementById("titleIT").value.trim();
+      const descriptionIT = document.getElementById("descriptionIT").value.trim();
+      const titleEN = document.getElementById("titleEN").value.trim();
+      const descriptionEN = document.getElementById("descriptionEN").value.trim();
+      const dateStr = document.getElementById("date").value;
+      const bodyEN = document.getElementById("bodyEN").value.trim();
+
+      if (!postNumber || !titleIT || !descriptionIT || !titleEN || !descriptionEN || !dateStr) {
+        showStatus("error", "Please fill in all fields (Post Number, Date, both titles and descriptions).");
+        return;
+      }
+      if (!bodyEN) {
+        showStatus("error", "Please paste the English body text.");
+        return;
+      }
+
+      let bodyWithImages = [];
+
+      if (composerBuilt) {
+        const composer = document.getElementById("composer");
+        for (const child of composer.querySelectorAll(".composer-block")) {
+          if (child.dataset.type === "text") {
+            bodyWithImages.push({ type: "text", content: child.dataset.content });
+          } else if (child.dataset.type === "image") {
+            const sn = child.dataset.safeName;
+            const img = images.find(i => i.safeName === sn);
+            if (img) {
+              const { alt, caption } = readImageBlock(child);
+              bodyWithImages.push({ type: "image", safeName: sn, data: img.dataUrl.split(",")[1], alt, caption });
+            }
+          }
+        }
+      } else {
+        const bodyText = document.getElementById("body").value.trim();
+        if (!bodyText) { showStatus("error", "Post body is empty."); return; }
+        bodyWithImages.push({ type: "text", content: bodyText });
+      }
+
+      showStatus("loading", "Creating post files…");
+      document.getElementById("submit-btn").disabled = true;
+
+      try {
+        const r = await fetch("/create", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ postNumber, titleIT, descriptionIT, titleEN, descriptionEN, dateStr, bodyWithImages, bodyEN }),
+        });
+        const data = await r.json();
+        if (data.success) {
+          showStatus("success", `Post created!\n\nIT: ${data.files.it}\nEN: ${data.files.en}\nImages: ${data.files.images}`);
+        } else {
+          showStatus("error", data.error || "Unknown error");
+        }
+      } catch (err) {
+        showStatus("error", err.message);
+      } finally {
+        document.getElementById("submit-btn").disabled = false;
+      }
+    });
+
+    function showStatus(type, msg) {
+      const el = document.getElementById("status");
+      el.className = type;
+      el.innerHTML = type === "success"
+        ? msg.replace(/\n/g, "<br>")
+        : `<strong>${type === "error" ? "Error: " : ""}</strong>${msg.replace(/\n/g, "<br>")}`;
+      el.style.display = "block";
+    }
+  </script>
+</body>
+</html>
